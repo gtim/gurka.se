@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule ^allergisk$ index.php?allergisk [L]
+RewriteRule ^mailfobi$ index.php?mailfobi [L]
+RewriteRule ^highscore$ rick.php [L]
