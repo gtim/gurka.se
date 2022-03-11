@@ -15,28 +15,28 @@
 				background: white;
 				color: black;
 			}
-			[darkmode] {
+			body.darkmode {
 				background: #2f3136;
 				color: white;
 			}
 			#darkmode {
 				position: fixed;
-		    bottom: 2em;
-		    right: 2ch;
-		    background: #2f3136;
-		    text-align: center;
-		    padding: 1em 2ch;
-		    border-radius: 0.4ch;
+				bottom: 2em;
+				right: 2ch;
+				background: #2f3136;
+				text-align: center;
+				padding: 1em 2ch;
+				border-radius: 0.4ch;
 				color: white;
 			}
 			#darkmode::before {
 				content: "Dark Mode";
 			}
-			[darkmode] #darkmode {
+			.darkmode #darkmode {
 				background: #2f3136;
 				color: black;
 			}
-		 	[darkmode] #darkmode::before {
+		 	.darkmode #darkmode::before {
 				background: white;
 				content: "Light Mode";
 			}
@@ -52,13 +52,16 @@
 			div#gurka {
 				width:100%;
 				height:100%;
-				background-image:url(/img/gurka.png); /* flickr.com/photos/vizzzual-dot-com */
+				background-image:url(/img/gurka.jpg); /* flickr.com/photos/vizzzual-dot-com */
 				background-size: contain;
 				background-position: center;
 				background-repeat: no-repeat;
 				<? if ( isset($_REQUEST['allergisk']) ) { ?>
 					display:none; /* göm gurka för allergiker */
 				<? } ?>
+			}
+			.darkmode div#gurka {
+				background-image:url(/img/gurka-transp.png); /* flickr.com/photos/vizzzual-dot-com */
 			}
 			ul#fot {
 				position:absolute;
@@ -304,7 +307,7 @@
 						return false;
 					}
 				});
-				$("#darkmode").click(function(){ document.body.toggleAttribute('darkmode') });
+				$("#darkmode").click(function(){ $('body').toggleClass('darkmode'); });
 			});
 		</script>
 	</head>
