@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<title>&#x1F952; gurka.se</title>
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -12,6 +12,33 @@
 			body {
 				overflow-x:hidden;
 				overflow-y:hidden;
+				background: white;
+				color: black;
+			}
+			[darkmode] {
+				background: #2f3136;
+				color: white;
+			}
+			#darkmode {
+				position: fixed;
+		    bottom: 2em;
+		    right: 2ch;
+		    background: #2f3136;
+		    text-align: center;
+		    padding: 1em 2ch;
+		    border-radius: 0.4ch;
+				color: white;
+			}
+			#darkmode::before {
+				content: "Dark Mode";
+			}
+			[darkmode] #darkmode {
+				background: #2f3136;
+				color: black;
+			}
+		 	[darkmode] #darkmode::before {
+				background: white;
+				content: "Light Mode";
 			}
 			html, body, div, p, ul, li {
 				padding:0;
@@ -25,12 +52,12 @@
 			div#gurka {
 				width:100%;
 				height:100%;
-				background-image:url(/img/gurka-180-sq.jpg); /* flickr.com/photos/vizzzual-dot-com */
+				background-image:url(/img/gurka.png); /* flickr.com/photos/vizzzual-dot-com */
 				background-size: contain;
 				background-position: center;
 				background-repeat: no-repeat;
 				<? if ( isset($_REQUEST['allergisk']) ) { ?>
-					display:none; /* göm gurka för allergiker */
+					display:none; /* gÃ¶m gurka fÃ¶r allergiker */
 				<? } ?>
 			}
 			ul#fot {
@@ -277,12 +304,14 @@
 						return false;
 					}
 				});
+				$("#darkmode").click(function(){ document.body.toggleAttribute('darkmode') });
 			});
 		</script>
 	</head>
 	<body>
 		<div id="gurkburk">
 			<div id="gurka"></div>
+			<div id="darkmode"></div>
 		</div>
 		<ul id="fot">
 			<? if ( date('m-d') == '05-01' || isset($_REQUEST['beta']) ) { ?>
