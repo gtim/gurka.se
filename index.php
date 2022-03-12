@@ -19,6 +19,9 @@
 				background: #2f3136;
 				color: white;
 			}
+			.darkmode a {
+				color: white;
+			}
 			#darkmode {
 				position: fixed;
 				bottom: 2em;
