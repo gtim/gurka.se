@@ -27,6 +27,9 @@
 				bottom: 10px;
 				right: 10px;
 			}
+			.darkmode_knapp:hover {
+				cursor:pointer;
+			}
 			.darkmode .darkmode_knapp#moon {
 				display:none;
 			}
