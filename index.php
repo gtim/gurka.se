@@ -351,7 +351,7 @@
 			});
 		</script>
 	</head>
-	<body>
+	<body<?=isset($_REQUEST['darkmode'])?' class="darkmode"':''?>>
 		<div id="gurkburk">
 			<div id="gurka"></div>
 		</div>
