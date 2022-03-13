@@ -276,9 +276,11 @@
 						UIobj.text( 'l33t' );
 					} else {
 						if ( name === 'turns' || name === 'tps' ) {
-							UIobj.text( YourJS.fullNumber(value) );
+							if(UIobj.text() != YourJS.fullNumber(value))
+								UIobj.text( YourJS.fullNumber(value));
 						} else {
-							UIobj.text( value );
+							if(UIobj.text() != value)
+								UIobj.text(value);
 						}
 					}
 				}
