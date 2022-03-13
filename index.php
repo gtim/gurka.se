@@ -22,26 +22,16 @@
 			.darkmode a {
 				color: white;
 			}
-			#darkmode {
+			.darkmode_knapp {
 				position: fixed;
-				bottom: 2em;
-				right: 2ch;
-				background: #2f3136;
-				text-align: center;
-				padding: 1em 2ch;
-				border-radius: 0.4ch;
-				color: white;
+				bottom: 10px;
+				right: 10px;
 			}
-			#darkmode::before {
-				content: "Dark Mode";
+			.darkmode .darkmode_knapp#moon {
+				display:none;
 			}
-			.darkmode #darkmode {
-				background: #2f3136;
-				color: black;
-			}
-		 	.darkmode #darkmode::before {
-				background: white;
-				content: "Light Mode";
+			body:not(.darkmode) .darkmode_knapp#sun {
+				display:none;
 			}
 			html, body, div, p, ul, li {
 				padding:0;
@@ -310,14 +300,13 @@
 						return false;
 					}
 				});
-				$("#darkmode").click(function(){ $('body').toggleClass('darkmode'); });
+				$(".darkmode_knapp").click(function(){ $('body').toggleClass('darkmode'); });
 			});
 		</script>
 	</head>
 	<body>
 		<div id="gurkburk">
 			<div id="gurka"></div>
-			<div id="darkmode"></div>
 		</div>
 		<ul id="fot">
 			<? if ( date('m-d') == '05-01' || isset($_REQUEST['beta']) ) { ?>
@@ -332,5 +321,8 @@
 			<li id="ui_dir" style="display:none;color:#ff0000;font-weight:bold;" title="VARNING">FEL H&Aring;LL!</li>
 			<li id="ui_twist" style="display:none;" title="Varv uppvridna"></li>
 		</ul>
+		<img class="darkmode_knapp" id="sun"  src="/img/sun-white.png" alt="Light-mode" title="Light-mode"> 
+		<img class="darkmode_knapp" id="moon" src="/img/moon-fill.png" alt="Dark-mode"  title="Dark-mode"> 
+		<!-- darkmode-ikoner från remixicon.com, Apache 2.0-licens -->
 	</body>
 </html>
