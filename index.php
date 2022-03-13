@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		<title>&#x1F952; gurka.se</title>
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -12,6 +12,15 @@
 			body {
 				overflow-x:hidden;
 				overflow-y:hidden;
+				background: white;
+				color: black;
+			}
+			body.darkmode {
+				background: #121212;
+				color: #aaa;
+			}
+			.darkmode a {
+				color: #aaa;
 			}
 			html, body, div, p, ul, li {
 				padding:0;
@@ -25,13 +34,17 @@
 			div#gurka {
 				width:100%;
 				height:100%;
-				background-image:url(/img/gurka-180-sq.jpg); /* flickr.com/photos/vizzzual-dot-com */
+				background-image:url(/img/gurka.jpg); /* flickr.com/photos/vizzzual-dot-com */
 				background-size: contain;
+				/*background-size: 400px 300px;*/
 				background-position: center;
 				background-repeat: no-repeat;
 				<? if ( isset($_REQUEST['allergisk']) ) { ?>
-					display:none; /* göm gurka för allergiker */
+					display:none; /* gÃ¶m gurka fÃ¶r allergiker */
 				<? } ?>
+			}
+			.darkmode div#gurka {
+				background-image:url(/img/gurka-transp.png); /* flickr.com/photos/vizzzual-dot-com */
 			}
 			ul#fot {
 				position:absolute;
@@ -48,12 +61,33 @@
 				font-family: 'Roboto', sans-serif;
 				overflow-wrap: break-word;
 			}
-			ul#fot li+li {
+			ul#fot li.right_of_center {
 				border-left:1px solid #aaa;
+			}
+			ul#fot li.left_of_center {
+				border-right:1px solid #aaa;
 			}
 			ul#fot a {
 				text-decoration:none;
 			}
+			
+			/* darkmode-knapp */
+
+			.darkmode_knapp {
+				position: fixed;
+				bottom: 10px;
+				right: 10px;
+			}
+			.darkmode_knapp:hover {
+				cursor:pointer;
+			}
+			.darkmode .darkmode_knapp#moon {
+				display:none;
+			}
+			body:not(.darkmode) .darkmode_knapp#sun {
+				display:none;
+			}
+
 		</style>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-S6QQ0640WP"></script>
@@ -102,6 +136,9 @@
 			var lastPingRClicksSince = 0;
 			var numClicks = 0;
 			var numRClicks = 0;
+
+			var numDarkmodeClicks = 0;
+			var lastDarkmodeDate = new Date();
 
 			var UIObjectVisibility = {};
 
@@ -207,6 +244,17 @@
 				updateUIObjectVisibility( 'twist', (-gurkaSpringTwist_d/360).toFixed(1), gurkaSpringTwist_d < -2*360, gurkaSpringTwist_d >= 0 );
 				// wrong dir
 				updateUIObjectVisibility( 'dir', undefined, AV_tps < -0.1, AV_tps >= 0 );
+				// num darkmode clicks
+				updateUIObjectVisibility( 'darkclick', numDarkmodeClicks, numDarkmodeClicks >= 10, numDarkmodeClicks == 0 );
+				if ( numDarkmodeClicks >= 10 ) {
+					// f = exp( -a * ( n - 10 ) )
+					// exp( -a * 90 ) = 0.5 => a = -ln(0.5)/90 =~ 0.0077
+					var side = Math.min( $("#gurkburk").height(), $("#gurkburk").width() );
+					var short_side = Math.exp( -0.0077 * ( numDarkmodeClicks-10 ) ) * side;
+					$("#gurka").css('background-size', Math.round(side) + 'px ' + Math.round(short_side) + 'px');
+				} else {
+					$("#gurka").css('background-size', 'contain');
+				}
 			}
 			function updateUIObjectVisibility( name, value, showIfHidden, hideIfShown ) {
 				if ( ! ( name in UIObjectVisibility ) )  {
@@ -265,6 +313,14 @@
 					var now = updateGurka();
 					updateUI();
 				},40);
+				setInterval(function(){
+					// reduce darkmode click counter after 15s of no clicking
+					var now = new Date();
+					console.log( now - lastDarkmodeDate );
+					if ( numDarkmodeClicks > 0 && now - lastDarkmodeDate > 15e3 ) {
+						numDarkmodeClicks--;
+					}
+				},500);
 				$("#gurka").click(function(){ return gurkklick(0); });
 				$("#gurka").contextmenu(function(){ return gurkklick(1); });
 				$('body').keyup(function(e){
@@ -277,6 +333,11 @@
 						return false;
 					}
 				});
+				$(".darkmode_knapp").click(function(){
+					$('body').toggleClass('darkmode');
+					numDarkmodeClicks++;
+					lastDarkmodeDate = new Date();
+				});
 			});
 		</script>
 	</head>
@@ -285,6 +346,7 @@
 			<div id="gurka"></div>
 		</div>
 		<ul id="fot">
+			<li id="ui_darkclick" class="left_of_center" style="display:none;" title="Darkmode-klick"></li>
 			<? if ( date('m-d') == '05-01' || isset($_REQUEST['beta']) ) { ?>
 				<li style="background-color:#ED1C24;color:#fff;padding:6px;">glad f&ouml;rsta maj!</li>
 			<? } else { ?>
@@ -292,10 +354,13 @@
 					<li><a href="mailto:tim@gurka.se" target="_blank" rel="noopener noreferrer" title="tycker om buggrapporter och fanmail">tim@gurka.se</a></li>
 				<? } ?>
 			<? } ?>
-			<li id="ui_turns" style="display:none;" title="Varv snurrade"></li>
-			<li id="ui_tps" style="display:none;" title="Varv per sekund"></li>
-			<li id="ui_dir" style="display:none;color:#ff0000;font-weight:bold;" title="VARNING">FEL H&Aring;LL!</li>
-			<li id="ui_twist" style="display:none;" title="Varv uppvridna"></li>
+			<li id="ui_turns" class="right_of_center" style="display:none;" title="Varv snurrade"></li>
+			<li id="ui_tps"   class="right_of_center" style="display:none;" title="Varv per sekund"></li>
+			<li id="ui_dir"   class="right_of_center" style="display:none;color:#ff0000;font-weight:bold;" title="VARNING">FEL H&Aring;LL!</li>
+			<li id="ui_twist" class="right_of_center" style="display:none;" title="Varv uppvridna"></li>
 		</ul>
+		<img class="darkmode_knapp" id="sun"  src="/img/sun-aaa.png" alt="Light-mode" title="Light-mode"> 
+		<img class="darkmode_knapp" id="moon" src="/img/moon-fill.png" alt="Dark-mode"  title="Dark-mode"> 
+		<!-- darkmode-ikoner frÃ¥n remixicon.com, Apache 2.0-licens -->
 	</body>
 </html>
