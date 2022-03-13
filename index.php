@@ -88,6 +88,16 @@
 				display:none;
 			}
 
+			/* image preload */
+			div#preload {
+				position:absolute;
+				width:0;
+				height:0;
+				overflow:hidden;
+				z-index: -1;
+				background:url(/img/gurka-transp.png) no-repeat -9999px -9999px;
+			}
+
 		</style>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-S6QQ0640WP"></script>
@@ -362,5 +372,6 @@
 		<img class="darkmode_knapp" id="sun"  src="/img/sun-aaa.png" alt="Light-mode" title="Light-mode"> 
 		<img class="darkmode_knapp" id="moon" src="/img/moon-fill.png" alt="Dark-mode"  title="Dark-mode"> 
 		<!-- darkmode-ikoner från remixicon.com, Apache 2.0-licens -->
+		<div id="preload"></div>
 	</body>
 </html>
