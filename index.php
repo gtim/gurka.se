@@ -255,7 +255,7 @@
 				// wrong dir
 				updateUIObjectVisibility( 'dir', undefined, AV_tps < -0.1, AV_tps >= 0 );
 				// num darkmode clicks
-				updateUIObjectVisibility( 'darkclick', numDarkmodeClicks, numDarkmodeClicks >= 10, numDarkmodeClicks == 0 );
+				updateUIObjectVisibility( 'darkclick', numDarkmodeClicks, numDarkmodeClicks >= 10, numDarkmodeClicks < 5 );
 				if ( numDarkmodeClicks >= 10 ) {
 					// f = exp( -a * ( n - 10 ) )
 					// exp( -a * 90 ) = 0.5 => a = -ln(0.5)/90 =~ 0.0077
