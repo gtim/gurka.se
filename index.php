@@ -16,11 +16,11 @@
 				color: black;
 			}
 			body.darkmode {
-				background: #2f3136;
-				color: white;
+				background: #121212;
+				color: #aaa;
 			}
 			.darkmode a {
-				color: white;
+				color: #aaa;
 			}
 			.darkmode_knapp {
 				position: fixed;
