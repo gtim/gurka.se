@@ -60,8 +60,11 @@
 				font-family: 'Roboto', sans-serif;
 				overflow-wrap: break-word;
 			}
-			ul#fot li+li {
+			ul#fot li.right_of_center {
 				border-left:1px solid #aaa;
+			}
+			ul#fot li.left_of_center {
+				border-right:1px solid #aaa;
 			}
 			ul#fot a {
 				text-decoration:none;
@@ -132,6 +135,8 @@
 			var lastPingRClicksSince = 0;
 			var numClicks = 0;
 			var numRClicks = 0;
+
+			var numDarkmodeClicks = 0;
 
 			var UIObjectVisibility = {};
 
@@ -237,6 +242,8 @@
 				updateUIObjectVisibility( 'twist', (-gurkaSpringTwist_d/360).toFixed(1), gurkaSpringTwist_d < -2*360, gurkaSpringTwist_d >= 0 );
 				// wrong dir
 				updateUIObjectVisibility( 'dir', undefined, AV_tps < -0.1, AV_tps >= 0 );
+				// num darkmode clicks
+				updateUIObjectVisibility( 'darkclick', numDarkmodeClicks, numDarkmodeClicks >= 10, numDarkmodeClicks == 0 );
 			}
 			function updateUIObjectVisibility( name, value, showIfHidden, hideIfShown ) {
 				if ( ! ( name in UIObjectVisibility ) )  {
@@ -307,7 +314,10 @@
 						return false;
 					}
 				});
-				$(".darkmode_knapp").click(function(){ $('body').toggleClass('darkmode'); });
+				$(".darkmode_knapp").click(function(){
+					$('body').toggleClass('darkmode');
+					numDarkmodeClicks++;
+				});
 			});
 		</script>
 	</head>
@@ -316,6 +326,7 @@
 			<div id="gurka"></div>
 		</div>
 		<ul id="fot">
+			<li id="ui_darkclick" class="left_of_center" style="display:none;" title="Darkmode-klick"></li>
 			<? if ( date('m-d') == '05-01' || isset($_REQUEST['beta']) ) { ?>
 				<li style="background-color:#ED1C24;color:#fff;padding:6px;">glad f&ouml;rsta maj!</li>
 			<? } else { ?>
@@ -323,10 +334,10 @@
 					<li><a href="mailto:tim@gurka.se" target="_blank" rel="noopener noreferrer" title="tycker om buggrapporter och fanmail">tim@gurka.se</a></li>
 				<? } ?>
 			<? } ?>
-			<li id="ui_turns" style="display:none;" title="Varv snurrade"></li>
-			<li id="ui_tps" style="display:none;" title="Varv per sekund"></li>
-			<li id="ui_dir" style="display:none;color:#ff0000;font-weight:bold;" title="VARNING">FEL H&Aring;LL!</li>
-			<li id="ui_twist" style="display:none;" title="Varv uppvridna"></li>
+			<li id="ui_turns" class="right_of_center" style="display:none;" title="Varv snurrade"></li>
+			<li id="ui_tps"   class="right_of_center" style="display:none;" title="Varv per sekund"></li>
+			<li id="ui_dir"   class="right_of_center" style="display:none;color:#ff0000;font-weight:bold;" title="VARNING">FEL H&Aring;LL!</li>
+			<li id="ui_twist" class="right_of_center" style="display:none;" title="Varv uppvridna"></li>
 		</ul>
 		<img class="darkmode_knapp" id="sun"  src="/img/sun-aaa.png" alt="Light-mode" title="Light-mode"> 
 		<img class="darkmode_knapp" id="moon" src="/img/moon-fill.png" alt="Dark-mode"  title="Dark-mode"> 
