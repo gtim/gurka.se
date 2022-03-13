@@ -317,10 +317,10 @@
 					// reduce darkmode click counter after 15s of no clicking
 					var now = new Date();
 					console.log( now - lastDarkmodeDate );
-					if ( numDarkmodeClicks > 0 && now - lastDarkmodeDate > 15e3 ) {
+					if ( numDarkmodeClicks > 0 && now - lastDarkmodeDate > 10e3 ) {
 						numDarkmodeClicks--;
 					}
-				},500);
+				},200);
 				$("#gurka").click(function(){ return gurkklick(0); });
 				$("#gurka").contextmenu(function(){ return gurkklick(1); });
 				$('body').keyup(function(e){
