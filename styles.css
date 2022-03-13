@@ -27,10 +27,6 @@ body {
   transition: transform var(--framerate) linear;
 }
 
-#gurka.noAnimation {
-  transition: none;
-}
-
 ul {
   position: fixed;
   left: 0;
@@ -42,15 +38,11 @@ li {
   display: inline;
   padding: 0 .5rem;
   font-family: 'Roboto', sans-serif;
-  overflow-wrap: break-word;
+  text-decoration: none;
 }
 
 li+li {
   border-left: 1px solid #aaa;
-}
-
-li a {
-  text-decoration: none;
 }
 
 #darkmodeButton {
