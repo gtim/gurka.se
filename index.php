@@ -22,20 +22,6 @@
 			.darkmode a {
 				color: #aaa;
 			}
-			.darkmode_knapp {
-				position: fixed;
-				bottom: 10px;
-				right: 10px;
-			}
-			.darkmode_knapp:hover {
-				cursor:pointer;
-			}
-			.darkmode .darkmode_knapp#moon {
-				display:none;
-			}
-			body:not(.darkmode) .darkmode_knapp#sun {
-				display:none;
-			}
 			html, body, div, p, ul, li {
 				padding:0;
 				margin:0;
@@ -80,6 +66,24 @@
 			ul#fot a {
 				text-decoration:none;
 			}
+			
+			/* darkmode-knapp */
+
+			.darkmode_knapp {
+				position: fixed;
+				bottom: 10px;
+				right: 10px;
+			}
+			.darkmode_knapp:hover {
+				cursor:pointer;
+			}
+			.darkmode .darkmode_knapp#moon {
+				display:none;
+			}
+			body:not(.darkmode) .darkmode_knapp#sun {
+				display:none;
+			}
+
 		</style>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-S6QQ0640WP"></script>
