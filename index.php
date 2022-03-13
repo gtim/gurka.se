@@ -36,6 +36,7 @@
 				height:100%;
 				background-image:url(/img/gurka.jpg); /* flickr.com/photos/vizzzual-dot-com */
 				background-size: contain;
+				/*background-size: 400px 300px;*/
 				background-position: center;
 				background-repeat: no-repeat;
 				<? if ( isset($_REQUEST['allergisk']) ) { ?>
@@ -137,6 +138,7 @@
 			var numRClicks = 0;
 
 			var numDarkmodeClicks = 0;
+			var lastDarkmodeDate = new Date();
 
 			var UIObjectVisibility = {};
 
@@ -244,6 +246,15 @@
 				updateUIObjectVisibility( 'dir', undefined, AV_tps < -0.1, AV_tps >= 0 );
 				// num darkmode clicks
 				updateUIObjectVisibility( 'darkclick', numDarkmodeClicks, numDarkmodeClicks >= 10, numDarkmodeClicks == 0 );
+				if ( numDarkmodeClicks >= 10 ) {
+					// f = exp( -a * ( n - 10 ) )
+					// exp( -a * 90 ) = 0.5 => a = -ln(0.5)/90 =~ 0.0077
+					var side = Math.min( $("#gurkburk").height(), $("#gurkburk").width() );
+					var short_side = Math.exp( -0.0077 * ( numDarkmodeClicks-10 ) ) * side;
+					$("#gurka").css('background-size', Math.round(side) + 'px ' + Math.round(short_side) + 'px');
+				} else {
+					$("#gurka").css('background-size', 'contain');
+				}
 			}
 			function updateUIObjectVisibility( name, value, showIfHidden, hideIfShown ) {
 				if ( ! ( name in UIObjectVisibility ) )  {
@@ -302,6 +313,14 @@
 					var now = updateGurka();
 					updateUI();
 				},40);
+				setInterval(function(){
+					// reduce darkmode click counter after 15s of no clicking
+					var now = new Date();
+					console.log( now - lastDarkmodeDate );
+					if ( numDarkmodeClicks > 0 && now - lastDarkmodeDate > 15e3 ) {
+						numDarkmodeClicks--;
+					}
+				},500);
 				$("#gurka").click(function(){ return gurkklick(0); });
 				$("#gurka").contextmenu(function(){ return gurkklick(1); });
 				$('body').keyup(function(e){
@@ -317,6 +336,7 @@
 				$(".darkmode_knapp").click(function(){
 					$('body').toggleClass('darkmode');
 					numDarkmodeClicks++;
+					lastDarkmodeDate = new Date();
 				});
 			});
 		</script>
