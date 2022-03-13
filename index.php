@@ -328,7 +328,7 @@
 			<li id="ui_dir" style="display:none;color:#ff0000;font-weight:bold;" title="VARNING">FEL H&Aring;LL!</li>
 			<li id="ui_twist" style="display:none;" title="Varv uppvridna"></li>
 		</ul>
-		<img class="darkmode_knapp" id="sun"  src="/img/sun-white.png" alt="Light-mode" title="Light-mode"> 
+		<img class="darkmode_knapp" id="sun"  src="/img/sun-aaa.png" alt="Light-mode" title="Light-mode"> 
 		<img class="darkmode_knapp" id="moon" src="/img/moon-fill.png" alt="Dark-mode"  title="Dark-mode"> 
 		<!-- darkmode-ikoner från remixicon.com, Apache 2.0-licens -->
 	</body>
