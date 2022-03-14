@@ -11,8 +11,8 @@ const q = s => document.querySelector(s),
 		idleSpeed: 1,
 		minSpeed: -5,
 		frameRate: 30, // number of updates every second
-		clickMultiplier: 1.1, // multiplies the speed every click
-		brakeMultiplier: 0.995, // multiplies the speed every frame
+		clickSpeed: 1, // multiplies the speed every click
+		brakeSpeed: .1, // multiplies the speed every frame
 	},
 	frameDuration = 1000 / settings.frameRate
 footer = {
@@ -43,9 +43,9 @@ setInterval(() => {
 		speed = settings.idleSpeed
 	else {
 		if (speed > settings.idleSpeed)
-			speed *= settings.brakeMultiplier
+			speed -= settings.brakeSpeed
 		else
-			speed /= settings.brakeMultiplier;
+			speed += settings.brakeSpeed
 	}
 
 	tpm = Math.round(speed * settings.frameRate / 6);
@@ -53,15 +53,14 @@ setInterval(() => {
 }, frameDuration);
 
 gurka.addEventListener('click', () => {
-	speed *= settings.clickMultiplier;
+	speed += settings.clickSpeed;
 	if (speed > settings.maxSpeed) speed = settings.maxSpeed
 });
 gurka.addEventListener('contextmenu', e => {
 	e.preventDefault();
-	speed /= settings.clickMultiplier;
+	speed -= settings.clickSpeed;
 	if (speed < settings.minSpeed) speed = settings.minSpeed
 });
-setInterval(() => console.log(speed), 100);
 
 darkmodeButton.addEventListener('click', () => {
 	darkmode = !darkmode;
