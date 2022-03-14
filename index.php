@@ -15,12 +15,17 @@ header("Link:" .
 		<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 		<script defer src="app.js"></script>
 		<link href="styles.css" rel="stylesheet">
-		<?=isset($_REQUEST['allergisk'])) ? '<style>#gurka{display:none}</style>' : '' ?>
+		<?=isset($_REQUEST['allergisk']) ? '<style>#gurka{display:none}</style>' : '' ?>
 	</head>
 	<body <?=isset($_REQUEST['darkmode']) ? 'class="darkmode"' : '' ?>>
 			<img src="img/gurka.png" id="gurka"></img>
 		<ul>
-			<li id="mail"><a href="mailto:tim@gurka.se" target="_blank" rel="noopener noreferrer">tim@gurka.se</a></li>
+			<?php
+			if (date("m-d") == "05-01")
+				echo '<li style="background-color:#ED1C24;color:#fff;padding:6px;">Glad f&ouml;rsta maj!</li>';
+			if (!isset($_REQUEST["mailfobi"]))
+				echo '<li><a href="mailto:tim@gurka.se" target="_blank" rel="noopener noreferrer">tim@gurka.se</a></li>';
+			?>
 			<li id="turns" title="Varv snurrade">0</li>
 			<li id="tpm" title="Varv per sekund">0</li>
 		</ul>
