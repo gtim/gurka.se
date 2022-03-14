@@ -15,6 +15,9 @@
 		<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 		<script defer src="app.js"></script>
 		<link href="styles.css" rel="stylesheet">
+		<?php if ( isset($_REQUEST['allergisk']) ) {
+			echo	"<style>#gurka{display:none}</style>";
+		} ?>
 	</head>
 	<body>
 			<img src="img/gurka.png" id="gurka"></img>
