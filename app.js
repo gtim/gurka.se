@@ -8,7 +8,8 @@ const q = s => document.querySelector(s),
 	qa = s => Array.from(document.querySelectorAll(s)),
 	settings = {
 		maxSpeed: 50,
-		minSpeed: 1,
+		idleSpeed: 1,
+		minSpeed: -5,
 		frameRate: 30, // number of updates every second
 		clickMultiplier: 1.1, // multiplies the speed every click
 		brakeMultiplier: 0.995, // multiplies the speed every frame
@@ -23,7 +24,7 @@ footer = {
 
 let gurka = q('#gurka'),
 	angle = 0, // current angle
-	speed = settings.minSpeed, // angle-increase per frame
+	speed = settings.idleSpeed, // angle-increase per frame
 	turns = 0, // number of completed turns
 	tpm = 0; // turns per minute if current speed the entire minute
 
@@ -38,9 +39,14 @@ setInterval(() => {
 
 	gurka.style.setProperty('--angle', Math.round(angle) + 'deg');
 
-	speed *= settings.brakeMultiplier;
-	if (speed < settings.minSpeed) speed = settings.minSpeed
-
+	if (speed.toFixed(2) == settings.idleSpeed)
+		speed = settings.idleSpeed
+	else {
+		if (speed > settings.idleSpeed)
+			speed *= settings.brakeMultiplier
+		else
+			speed /= settings.brakeMultiplier;
+	}
 
 	tpm = Math.round(speed * settings.frameRate / 6);
 	if (footer.tpm.innerHTML != tpm) footer.tpm.innerHTML = tpm;
@@ -49,11 +55,17 @@ setInterval(() => {
 gurka.addEventListener('click', () => {
 	speed *= settings.clickMultiplier;
 	if (speed > settings.maxSpeed) speed = settings.maxSpeed
-})
+});
+gurka.addEventListener('contextmenu', e => {
+	e.preventDefault();
+	speed /= settings.clickMultiplier;
+	if (speed < settings.minSpeed) speed = settings.minSpeed
+});
+setInterval(() => console.log(speed), 100);
 
 darkmodeButton.addEventListener('click', () => {
 	darkmode = !darkmode;
 	document.body.classList.toggle('darkmode', darkmode);
 	if (darkmode) darkmodeButton.src = 'img/sun.png'
 	else darkmodeButton.src = 'img/moon.png';
-})
+});
