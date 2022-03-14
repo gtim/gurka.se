@@ -328,7 +328,6 @@
 				setInterval(function(){
 					// reduce darkmode click counter after 15s of no clicking
 					var now = new Date();
-					console.log( now - lastDarkmodeDate );
 					if ( numDarkmodeClicks > 0 && now - lastDarkmodeDate > 10e3 ) {
 						numDarkmodeClicks--;
 					}
