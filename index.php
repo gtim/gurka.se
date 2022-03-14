@@ -320,6 +320,11 @@
 				updateUI();
 				return false;
 			}
+			function toggleDarkMode() {
+				$('body').toggleClass('darkmode');
+				numDarkmodeClicks++;
+				lastDarkmodeDate = new Date();
+			}
 			$( document ).ready(function() {
 				setInterval(function(){
 					var now = updateGurka();
@@ -343,12 +348,12 @@
 						gurkklick(1);
 						return false;
 					}
+					if (e.keyCode == 68) { // d
+						toggleDarkMode();
+						return false;
+					}
 				});
-				$(".darkmode_knapp").click(function(){
-					$('body').toggleClass('darkmode');
-					numDarkmodeClicks++;
-					lastDarkmodeDate = new Date();
-				});
+				$(".darkmode_knapp").click( toggleDarkMode );
 			});
 		</script>
 	</head>
