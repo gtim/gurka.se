@@ -1,3 +1,11 @@
+<?
+
+$img_base = 'gurka'; // CC, flickr.com/photos/vizzzual-dot-com
+if ( date('m-d') == '04-01' || isset($_REQUEST['beta'] ) ) {
+	$img_base = 'tomat'; // licensed from Adobe Stock
+}
+
+?>
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -34,7 +42,7 @@
 			div#gurka {
 				width:100%;
 				height:100%;
-				background-image:url(/img/gurka.jpg); /* flickr.com/photos/vizzzual-dot-com */
+				background-image:url(/img/<?=$img_base?>.jpg);
 				background-size: contain;
 				/*background-size: 400px 300px;*/
 				background-position: center;
@@ -44,7 +52,7 @@
 				<? } ?>
 			}
 			.darkmode div#gurka {
-				background-image:url(/img/gurka-transp.png); /* flickr.com/photos/vizzzual-dot-com */
+				background-image:url(/img/<?=$img_base?>-transp.png);
 			}
 			ul#fot {
 				position:absolute;
@@ -95,7 +103,7 @@
 				height:0;
 				overflow:hidden;
 				z-index: -1;
-				background:url(/img/gurka-transp.png) no-repeat -9999px -9999px;
+				background:url(/img/<?=$img_base?>-transp.png) no-repeat -9999px -9999px;
 			}
 
 		</style>
@@ -363,7 +371,7 @@
 		</div>
 		<ul id="fot">
 			<li id="ui_darkclick" class="left_of_center" style="display:none;" title="Darkmode-klick"></li>
-			<? if ( date('m-d') == '05-01' || isset($_REQUEST['beta']) ) { ?>
+			<? if ( date('m-d') == '05-01' ) { ?>
 				<li style="background-color:#ED1C24;color:#fff;padding:6px;">glad f&ouml;rsta maj!</li>
 			<? } else { ?>
 				<? if ( ! isset($_REQUEST['mailfobi'])  ) { ?>
