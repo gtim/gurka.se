@@ -1,7 +1,7 @@
 <?
 
 $img_base = 'gurka'; // CC, flickr.com/photos/vizzzual-dot-com
-if ( date('m-d') == '04-01' || isset($_REQUEST['beta'] ) ) {
+if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['beta'] ) ) {
 	$img_base = 'tomat'; // licensed from Adobe Stock
 }
 
@@ -20,7 +20,7 @@ if ( date('m-d') == '04-01' || isset($_REQUEST['beta'] ) ) {
 			body {
 				overflow-x:hidden;
 				overflow-y:hidden;
-				background: white;
+				background-color: white;
 				color: black;
 			}
 			body.darkmode {
