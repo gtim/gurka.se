@@ -3,6 +3,8 @@
 $img_base = 'gurka'; // CC, flickr.com/photos/vizzzual-dot-com
 if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['beta'] ) ) {
 	$img_base = 'tomat'; // licensed from Adobe Stock
+} elseif ( isset($_REQUEST['cage']) ) {
+	$img_base = 'cage' . random_int(1,3);
 }
 
 ?>
