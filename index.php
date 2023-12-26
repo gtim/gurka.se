@@ -109,15 +109,6 @@ if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['bet
 			}
 
 		</style>
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-S6QQ0640WP"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-
-		  gtag('config', 'G-S6QQ0640WP');
-		</script>
 		<script type="text/javascript" src="/ext/jquery-3.1.1.min.js"></script>
 		<script type="text/javascript" src="/ext/jQueryRotate.js"></script>
 		<script type="text/javascript" src="/ext/js.cookie.js"></script>
