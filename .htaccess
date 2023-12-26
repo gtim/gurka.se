@@ -1,7 +1,7 @@
 RewriteEngine On
 RewriteRule ^allergisk$ index.php?allergisk [L]
 RewriteRule ^mailfobi$ index.php?mailfobi [L]
-RewriteRule ^highscore$ rick.php [L]
+RewriteRule ^(highscore|admin|wp-admin|img)$ rick.php [L]
 RewriteRule ^mörk$ index.php?darkmode [L]
 RewriteRule ^tomat$ index.php?tomat [L]
 RewriteRule ^cage$ index.php?cage [L]
