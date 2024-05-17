@@ -133,11 +133,11 @@ if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['bet
 			var lastClickDate = new Date();
 			var lastClickA_d = 0;
 			var lastClickAV_dpms = GURKA_AV_BASE_dpms;
-			var lastClickTurns = 0;
+			var lastClickTurns = BigInt(0);
 			var lastClickSpringTwist_d = 0;
 			var gurkaAV_dpms = GURKA_AV_BASE_dpms;
 			var gurkaA_d = 0;
-			var gurkaTurns = 0;
+			var gurkaTurns = BigInt(0);
 			var gurkaSpringTwist_d= 0;
 
 			var lastPingDate = new Date();
@@ -238,7 +238,7 @@ if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['bet
 				} else {
 					since_last_click_turns = -Math.floor( -( lastClickA_d + since_last_click_d ) / 360 );
 				}
-				gurkaTurns = lastClickTurns + since_last_click_turns;
+				gurkaTurns = lastClickTurns + BigInt(since_last_click_turns);
 				return now;
 			}
 			function updateUI() {
@@ -276,7 +276,7 @@ if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['bet
 					if ( value == 1337 ) {
 						UIobj.text( 'l33t' );
 					} else {
-						if ( name === 'turns' || name === 'tps' ) {
+						if ( name === 'tps' ) {
 							if(UIobj.text() != YourJS.fullNumber(value))
 								UIobj.text( YourJS.fullNumber(value));
 						} else {
@@ -330,8 +330,7 @@ if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['bet
 				<?
 				if ( isset($_REQUEST['fusk']) ) {
 					if ( sha1($_REQUEST['fusk']) == '8bd0de6b64325b1eda200832f69198f46dbc63c0' ) {
-						echo 'lastClickTurns = 17e18;';
-						echo 'lastClickAV_dpms = 100;';
+						echo 'lastClickTurns = BigInt(17)*BigInt(10)**BigInt(18);';
 					}
 				}
 				?>
