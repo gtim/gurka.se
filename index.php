@@ -327,6 +327,14 @@ if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['bet
 				lastDarkmodeDate = new Date();
 			}
 			$( document ).ready(function() {
+				<?
+				if ( isset($_REQUEST['fusk']) ) {
+					if ( sha1($_REQUEST['fusk']) == '8bd0de6b64325b1eda200832f69198f46dbc63c0' ) {
+						echo 'lastClickTurns = 17e18;';
+						echo 'lastClickAV_dpms = 100;';
+					}
+				}
+				?>
 				setInterval(function(){
 					var now = updateGurka();
 					updateUI();
