@@ -20,9 +20,9 @@ make_path('build') or die "could not create build dir: $!";
 for my $site ( @sites ) {
 	my $out_dir = 'build/' . $site->{id} . '/';
 	make_path($out_dir) or die "could not create site build dir: $!";
-	dircopy( 'static/common', $out_dir ) or die "copy failed: $!";
-	if ( -d 'static/'.$site->{id} ) {
-		dircopy( 'static/'.$site->{id}, $out_dir ) or die "copy failed: $!";
+	dircopy( 'src/common', $out_dir ) or die "copy failed: $!";
+	if ( -d 'src/'.$site->{id} ) {
+		dircopy( 'src/'.$site->{id}, $out_dir ) or die "copy failed: $!";
 	}
 	# plant site config
 	write_site_config( $site, $out_dir . 'config.php' );
