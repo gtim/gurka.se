@@ -388,7 +388,7 @@ if ( $config['id'] == 'gurka' ) {
 					<? } ?>
 				<? } ?>
 			<? } ?>
-			<li id="ui_turns" class="right_of_center" style="display:none;" title="Varv snurrade"></li>
+			<li id="ui_turns" class="<? $config['id'] == 'gurka' ? 'right' : 'left'?>_of_center" style="display:none;" title="Varv snurrade"></li>
 			<li id="ui_tps"   class="right_of_center" style="display:none;" title="Varv per sekund"></li>
 			<li id="ui_dir"   class="right_of_center" style="display:none;color:#ff0000;font-weight:bold;" title="VARNING">FEL H&Aring;LL!</li>
 			<li id="ui_twist" class="right_of_center" style="display:none;" title="Varv uppvridna"></li>
