@@ -1,6 +1,8 @@
 <?
 
-$img_base = 'gurka'; // CC, flickr.com/photos/vizzzual-dot-com
+$config = include('config.php');
+
+$img_base = $config['id'];
 if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['beta'] ) ) {
 	$img_base = 'tomat'; // licensed from Adobe Stock
 } elseif ( isset($_REQUEST['cage']) ) {

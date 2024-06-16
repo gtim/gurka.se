@@ -2,6 +2,7 @@ use 5.30.0;
 use warnings;
 use File::Path qw/make_path remove_tree/;
 use File::Copy::Recursive qw/dircopy/;
+use File::Slurper qw/write_text/;
 
 my @sites = (
 	{ id => 'gurka', domain => 'gurka.se' },
@@ -22,4 +23,20 @@ for my $site ( @sites ) {
 	if ( -d 'static/'.$site->{id} ) {
 		dircopy( 'static/'.$site->{id}, $out_dir ) or die "copy failed: $!";
 	}
+	# plant site config
+	write_site_config( $site, $out_dir . 'config.php' );
+}
+
+sub write_site_config {
+	my ( $site, $config_path ) = @_;
+	my $config_contents = <<CONFIG;
+<?
+	\$config = array(
+		"id" => "$site->{id}",
+		"domain" => "$site->{domain}"
+	);
+	return \$config;
+?>
+CONFIG
+	write_text( $config_path, $config_contents );
 }
