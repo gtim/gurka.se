@@ -3,10 +3,12 @@
 $config = include('config.php');
 
 $img_base = $config['id'];
-if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['beta'] ) ) {
-	$img_base = 'tomat'; // licensed from Adobe Stock
-} elseif ( isset($_REQUEST['cage']) ) {
-	$img_base = 'cage' . random_int(1,3);
+if ( $config['id'] == 'gurka' ) {
+	if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['beta'] ) ) {
+		$img_base = 'tomat'; // licensed from Adobe Stock
+	} elseif ( isset($_REQUEST['cage']) ) {
+		$img_base = 'cage' . random_int(1,3);
+	}
 }
 
 ?>
@@ -51,7 +53,7 @@ if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['bet
 				/*background-size: 400px 300px;*/
 				background-position: center;
 				background-repeat: no-repeat;
-				<? if ( isset($_REQUEST['allergisk']) ) { ?>
+				<? if ( $config['id'] == 'gurka' && isset($_REQUEST['allergisk']) ) { ?>
 					display:none; /* göm gurka för allergiker */
 				<? } ?>
 			}
@@ -83,32 +85,36 @@ if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['bet
 				text-decoration:none;
 			}
 			
-			/* darkmode-knapp */
+			/* darkmode */
 
-			.darkmode_knapp {
-				position: fixed;
-				bottom: 10px;
-				right: 10px;
-			}
-			.darkmode_knapp:hover {
-				cursor:pointer;
-			}
-			.darkmode .darkmode_knapp#moon {
-				display:none;
-			}
-			body:not(.darkmode) .darkmode_knapp#sun {
-				display:none;
-			}
+			<? if ( $config['id'] == 'gurka' ) { ?>
 
-			/* image preload */
-			div#preload {
-				position:absolute;
-				width:0;
-				height:0;
-				overflow:hidden;
-				z-index: -1;
-				background:url(/img/<?=$img_base?>-transp.png) no-repeat -9999px -9999px;
-			}
+				.darkmode_knapp {
+					position: fixed;
+					bottom: 10px;
+					right: 10px;
+				}
+				.darkmode_knapp:hover {
+					cursor:pointer;
+				}
+				.darkmode .darkmode_knapp#moon {
+					display:none;
+				}
+				body:not(.darkmode) .darkmode_knapp#sun {
+					display:none;
+				}
+
+				/* image preload */
+				div#preload {
+					position:absolute;
+					width:0;
+					height:0;
+					overflow:hidden;
+					z-index: -1;
+					background:url(/img/<?=$img_base?>-transp.png) no-repeat -9999px -9999px;
+				}
+
+			<? } ?>
 
 		</style>
 		<script type="text/javascript" src="/ext/jquery-3.1.1.min.js"></script>
@@ -330,7 +336,7 @@ if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['bet
 			}
 			$( document ).ready(function() {
 				<?
-				if ( isset($_REQUEST['fusk']) ) {
+				if ( $config['id'] == 'gurka' && isset($_REQUEST['fusk']) ) {
 					if ( sha1($_REQUEST['fusk']) == '8bd0de6b64325b1eda200832f69198f46dbc63c0' ) {
 						echo 'lastClickTurns = BigInt(17)*BigInt(10)**BigInt(18);';
 					}
@@ -367,17 +373,19 @@ if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['bet
 			});
 		</script>
 	</head>
-	<body<?=isset($_REQUEST['darkmode'])?' class="darkmode"':''?>>
+	<body<?=( $config['id'] == 'gurka' && isset($_REQUEST['darkmode']) )?' class="darkmode"':''?>>
 		<div id="gurkburk">
 			<div id="gurka"></div>
 		</div>
 		<ul id="fot">
-			<li id="ui_darkclick" class="left_of_center" style="display:none;" title="Darkmode-klick"></li>
-			<? if ( date('m-d') == '05-01' ) { ?>
-				<li style="background-color:#ED1C24;color:#fff;padding:6px;">glad f&ouml;rsta maj!</li>
-			<? } else { ?>
-				<? if ( ! isset($_REQUEST['mailfobi'])  ) { ?>
-					<li><a href="mailto:tim@gurka.se" target="_blank" rel="noopener noreferrer" title="tycker om buggrapporter och fanmail">tim@gurka.se</a></li>
+			<?  if ( $config['id'] == 'gurka' ) { ?>
+				<li id="ui_darkclick" class="left_of_center" style="display:none;" title="Darkmode-klick"></li>
+				<? if ( date('m-d') == '05-01' ) { ?>
+					<li style="background-color:#ED1C24;color:#fff;padding:6px;">glad f&ouml;rsta maj!</li>
+				<? } else { ?>
+					<? if ( ! isset($_REQUEST['mailfobi'])  ) { ?>
+						<li><a href="mailto:tim@gurka.se" target="_blank" rel="noopener noreferrer" title="tycker om buggrapporter och fanmail">tim@gurka.se</a></li>
+					<? } ?>
 				<? } ?>
 			<? } ?>
 			<li id="ui_turns" class="right_of_center" style="display:none;" title="Varv snurrade"></li>
@@ -385,9 +393,11 @@ if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['bet
 			<li id="ui_dir"   class="right_of_center" style="display:none;color:#ff0000;font-weight:bold;" title="VARNING">FEL H&Aring;LL!</li>
 			<li id="ui_twist" class="right_of_center" style="display:none;" title="Varv uppvridna"></li>
 		</ul>
-		<img class="darkmode_knapp" id="sun"  src="/img/sun-aaa.png" alt="Light-mode" title="Light-mode"> 
-		<img class="darkmode_knapp" id="moon" src="/img/moon-fill.png" alt="Dark-mode"  title="Dark-mode"> 
-		<!-- darkmode-ikoner från remixicon.com, Apache 2.0-licens -->
-		<div id="preload"></div>
+		<? if ( $config['id'] == 'gurka' ) { ?>
+			<img class="darkmode_knapp" id="sun"  src="/img/sun-aaa.png" alt="Light-mode" title="Light-mode"> 
+			<img class="darkmode_knapp" id="moon" src="/img/moon-fill.png" alt="Dark-mode"  title="Dark-mode"> 
+			<!-- darkmode-ikoner från remixicon.com, Apache 2.0-licens -->
+			<div id="preload"></div>
+		<? } ?>
 	</body>
 </html>
