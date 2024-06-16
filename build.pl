@@ -5,8 +5,8 @@ use File::Copy::Recursive qw/dircopy/;
 use File::Slurper qw/write_text/;
 
 my @sites = (
-	{ id => 'gurka', domain => 'gurka.se' },
-	#{ id => 'persimon', domain => 'persimon.se' },
+	{ id => 'gurka', title => '&#x1F952; gurka.se' },
+	{ id => 'persimon', title => 'persimon.se' },
 );
 
 # clean build dir
@@ -33,7 +33,7 @@ sub write_site_config {
 <?
 	\$config = array(
 		"id" => "$site->{id}",
-		"domain" => "$site->{domain}"
+		"title" => "$site->{title}"
 	);
 	return \$config;
 ?>
