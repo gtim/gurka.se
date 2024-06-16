@@ -48,7 +48,7 @@ if ( $config['id'] == 'gurka' ) {
 			div#gurka {
 				width:100%;
 				height:100%;
-				background-image:url(/img/<?=$img_base?>.jpg);
+				background-image:url(/<?=$img_base?>.jpg);
 				background-size: contain;
 				/*background-size: 400px 300px;*/
 				background-position: center;
@@ -58,7 +58,7 @@ if ( $config['id'] == 'gurka' ) {
 				<? } ?>
 			}
 			.darkmode div#gurka {
-				background-image:url(/img/<?=$img_base?>-transp.png);
+				background-image:url(/<?=$img_base?>-transp.png);
 			}
 			ul#fot {
 				position:absolute;
@@ -111,7 +111,7 @@ if ( $config['id'] == 'gurka' ) {
 					height:0;
 					overflow:hidden;
 					z-index: -1;
-					background:url(/img/<?=$img_base?>-transp.png) no-repeat -9999px -9999px;
+					background:url(/<?=$img_base?>-transp.png) no-repeat -9999px -9999px;
 				}
 
 			<? } ?>
@@ -394,8 +394,8 @@ if ( $config['id'] == 'gurka' ) {
 			<li id="ui_twist" class="right_of_center" style="display:none;" title="Varv uppvridna"></li>
 		</ul>
 		<? if ( $config['id'] == 'gurka' ) { ?>
-			<img class="darkmode_knapp" id="sun"  src="/img/sun-aaa.png" alt="Light-mode" title="Light-mode"> 
-			<img class="darkmode_knapp" id="moon" src="/img/moon-fill.png" alt="Dark-mode"  title="Dark-mode"> 
+			<img class="darkmode_knapp" id="sun"  src="/sun-aaa.png" alt="Light-mode" title="Light-mode"> 
+			<img class="darkmode_knapp" id="moon" src="/moon-fill.png" alt="Dark-mode"  title="Dark-mode"> 
 			<!-- darkmode-ikoner från remixicon.com, Apache 2.0-licens -->
 			<div id="preload"></div>
 		<? } ?>

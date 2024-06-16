@@ -25,7 +25,7 @@
 			div#rick {
 				width:100%;
 				height:100%;
-				background-image:url(/img/no-strangers.gif);
+				background-image:url(/no-strangers.gif);
 				background-size: contain;
 				background-position: center;
 				background-repeat: no-repeat;
