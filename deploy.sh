@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare -A domains=(
-	["gurka"]="beta.gurka.se"
+	["gurka"]="gurka.se"
 	["persimon"]="persimon.se"
 )
 
