@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteRule ^allergisk$ index.php?allergisk [L]
+RewriteRule ^(allergisk|beroende)$ index.php?allergisk [L]
 RewriteRule ^mailfobi$ index.php?mailfobi [L]
 RewriteRule ^(highscore|admin|wp-admin|img)$ rick.php [L]
 RewriteRule ^mörk$ index.php?darkmode [L]
