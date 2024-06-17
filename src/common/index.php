@@ -8,6 +8,8 @@ if ( $config['id'] == 'gurka' ) {
 		$img_base = 'tomat'; // licensed from Adobe Stock
 	} elseif ( isset($_REQUEST['cage']) ) {
 		$img_base = 'cage' . random_int(1,3);
+	} elseif ( isset($_REQUEST['krabba']) ) {
+		$img_base = 'krabba';
 	}
 }
 
