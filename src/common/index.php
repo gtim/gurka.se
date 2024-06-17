@@ -2,14 +2,20 @@
 
 $config = include('config.php');
 
-$img_base = $config['id'];
+$img = $config['id'] . '.jpg';
+$img_darkmode = $img;
 if ( $config['id'] == 'gurka' ) {
+	$img_darkmode = 'gurka-transp.png';
 	if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['beta'] ) ) {
-		$img_base = 'tomat'; // licensed from Adobe Stock
+		$img = 'tomat.jpg';
+		$img_darkmode = 'tomat-transp.png';
 	} elseif ( isset($_REQUEST['cage']) ) {
-		$img_base = 'cage' . random_int(1,3);
+		$fn = 'cage' . random_int(1,3);
+		$img = $fn.'.jpg';
+		$img_darkmode = $fn.'-transp.png';
 	} elseif ( isset($_REQUEST['krabba']) ) {
-		$img_base = 'krabba';
+		$img = 'krabba.png';
+		$img_darkmode = $img;
 	}
 }
 
@@ -50,7 +56,7 @@ if ( $config['id'] == 'gurka' ) {
 			div#gurka {
 				width:100%;
 				height:100%;
-				background-image:url(/<?=$img_base?>.jpg);
+				background-image:url(/<?=$img?>);
 				background-size: contain;
 				/*background-size: 400px 300px;*/
 				background-position: center;
@@ -60,7 +66,7 @@ if ( $config['id'] == 'gurka' ) {
 				<? } ?>
 			}
 			.darkmode div#gurka {
-				background-image:url(/<?=$img_base?>-transp.png);
+				background-image:url(/<?=$img_darkmode?>);
 			}
 			ul#fot {
 				position:absolute;
@@ -113,7 +119,7 @@ if ( $config['id'] == 'gurka' ) {
 					height:0;
 					overflow:hidden;
 					z-index: -1;
-					background:url(/<?=$img_base?>-transp.png) no-repeat -9999px -9999px;
+					background:url(/<?=$img_darkmode?>) no-repeat -9999px -9999px;
 				}
 
 			<? } ?>
