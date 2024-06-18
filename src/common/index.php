@@ -2,7 +2,7 @@
 
 $config = include('config.php');
 
-$img = $config['id'] . '.jpg';
+$img = $config['id'] . '.png';
 $img_darkmode = $img;
 if ( $config['id'] == 'gurka' ) {
 	$img_darkmode = 'gurka-transp.png';
