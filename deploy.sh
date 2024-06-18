@@ -3,6 +3,7 @@
 declare -A domains=(
 	["gurka"]="gurka.se gurak.se guka.se"
 	["persimon"]="persimon.se"
+	["champinjon"]="champinjon.se"
 )
 
 for id in "${!domains[@]}"; do
