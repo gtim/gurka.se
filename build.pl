@@ -9,6 +9,7 @@ my @sites = (
 	{ id => 'gurka', title => '&#x1F952; gurka.se' },
 	{ id => 'persimon', title => 'persimon.se' },
 	{ id => 'champinjon', title => 'champinjon.se' },
+	{ id => 'potatis', title => 'potat.is' },
 );
 
 # clean build dir
