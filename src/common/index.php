@@ -6,7 +6,10 @@ $img = $config['id'] . '.png';
 $img_darkmode = $img;
 if ( $config['id'] == 'gurka' ) {
 	$img_darkmode = 'gurka-transp.png';
-	if ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['beta'] ) ) {
+	if ( isset($_REQUEST['color']) && in_array( $_REQUEST['color'], ['blå','lila','röd','orange','rosa'] ) ) {
+		$img = $_REQUEST['color'] . '.png';
+		$img_darkmode = $img;
+	} elseif ( date('m-d') == '04-01' || isset($_REQUEST['tomat']) || isset($_REQUEST['beta'] ) ) {
 		$img = 'tomat.jpg';
 		$img_darkmode = 'tomat-transp.png';
 	} elseif ( isset($_REQUEST['cage']) ) {
