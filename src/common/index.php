@@ -345,8 +345,11 @@ if ( $config['id'] == 'gurka' ) {
 			$( document ).ready(function() {
 				<?
 				if ( $config['id'] == 'gurka' && isset($_REQUEST['fusk']) ) {
+					$salted_hash = sha1('gurka' . $_REQUEST['fusk'] . 'gurka');
 					if ( sha1($_REQUEST['fusk']) == '8bd0de6b64325b1eda200832f69198f46dbc63c0' ) {
 						echo 'lastClickTurns = BigInt(17)*BigInt(10)**BigInt(18);';
+					} elseif ( $salted_hash == '36837a903093f2ac924af2b126bffba5c9cc20e0' ) {
+						echo 'lastClickTurns = BigInt("1000090000000");';
 					}
 				}
 				?>
