@@ -60,6 +60,7 @@ if ( $config['id'] == 'gurka' ) {
 				width:100%;
 				height:100%;
 				background-image:url(/<?=$img?>);
+				<?=( $config['id'] == 'gurka' ? '<!-- foto av viZZZual, CC-licens. modifierad. -->' : '' )?>
 				background-size: contain;
 				/*background-size: 400px 300px;*/
 				background-position: center;
