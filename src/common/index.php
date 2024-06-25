@@ -62,7 +62,6 @@ if ( $config['id'] == 'gurka' ) {
 				background-image:url(/<?=$img?>);
 				<?=( $config['id'] == 'gurka' ? '<!-- foto av viZZZual, CC-licens. modifierad. -->' : '' )?>
 				background-size: contain;
-				/*background-size: 400px 300px;*/
 				background-position: center;
 				background-repeat: no-repeat;
 				<? if ( $config['id'] == 'gurka' && isset($_REQUEST['allergisk']) ) { ?>
