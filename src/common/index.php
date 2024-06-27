@@ -5,7 +5,7 @@ $config = include('config.php');
 $img = $config['id'] . '.png';
 $img_darkmode = $img;
 if ( $config['id'] == 'gurka' ) {
-	$img_darkmode = 'gurka-transp.png';
+	$img_darkmode = 'gurka-transp2.png';
 	if ( isset($_REQUEST['color']) && in_array( $_REQUEST['color'], ['blå','lila','röd','orange','rosa'] ) ) {
 		$img = $_REQUEST['color'] . '.png';
 		$img_darkmode = $img;
